@@ -50,11 +50,12 @@ public class AaptManager {
 
         try {
             if (OSDetection.isMacOSX()) {
-                aaptBinary = Jar.getResourceAsFile("/prebuilt/macosx/" + aaptVersion, AaptManager.class);
+                throw new BrutException("This platform here isnt supported: " + OSDetection.returnOS());
             } else if (OSDetection.isUnix()) {
-                aaptBinary = Jar.getResourceAsFile("/prebuilt/linux/" + aaptVersion, AaptManager.class);
+                System.out.println("I: Using " + mproperty() + " aapt tools ...");
+                aaptBinary = Jar.getResourceAsFile("/prebuilt/linux_" + mproperty() + "/" + aaptVersion, AaptManager.class);
             } else if (OSDetection.isWindows()) {
-                aaptBinary = Jar.getResourceAsFile("/prebuilt/windows/" + aaptVersion + ".exe", AaptManager.class);
+                throw new BrutException("This platform here isnt supported: " + OSDetection.returnOS());
             } else {
                 throw new BrutException("Could not identify platform: " + OSDetection.returnOS());
             }
