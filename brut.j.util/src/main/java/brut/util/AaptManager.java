@@ -46,7 +46,7 @@ public class AaptManager {
         }
 
         // Set the 64 bit flag
-        aaptVersion += OSDetection.is64Bit() ? "_64" : "";
+        aaptVersion += OSDetection.is64Bit() ? "" : "";
 
         try {
             if (OSDetection.isMacOSX()) {
