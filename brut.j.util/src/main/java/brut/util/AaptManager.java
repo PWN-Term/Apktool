@@ -31,6 +31,12 @@ public class AaptManager {
         return getAapt(1);
     }
 
+    public static String mproperty() {
+        String mpropertys = System.getProperty("os.arch");
+
+        return mpropertys;
+    }
+
     private static File getAapt(Integer version) throws BrutException {
         File aaptBinary;
         String aaptVersion = getAaptBinaryName(version);
