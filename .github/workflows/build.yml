@@ -45,7 +45,7 @@ jobs:
       - name: Verify Executable
         run: ${{ env.BINARY_PATH }}/linux/${{ matrix.arch }}/${{ matrix.file }} version
       - name: Output Static
-        run: ldd ${{ env.BINARY_PATH }}/linux/${{ matrix.arch }/${{ matrix.file }} || true
+        run: ldd ${{ env.BINARY_PATH }}/linux/${{ matrix.arch }}/${{ matrix.file }} || true
 
   analyze-windows-aapt:
     runs-on: windows-latest
