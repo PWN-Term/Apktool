@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Verify Executable
-        run: ${{ env.BINARY_PATH }}/linux/${{ matrix.file }} version
+        run: ${{ env.BINARY_PATH }}/linux/*/${{ matrix.file }} version
       - name: Output Static
         run: ldd ${{ env.BINARY_PATH }}/linux/${{ matrix.file }} || true
 
