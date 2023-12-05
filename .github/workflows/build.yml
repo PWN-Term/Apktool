@@ -38,14 +38,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        file: [ aapt, aapt_64, aapt2, aapt2_64 ]
-        arch: [x86, amd64, x86, amd64]
+        x86: [ aapt, aapt2 ]
+        amd64: [aapt_64, aapt2_64]
     steps:
       - uses: actions/checkout@v4
-      - name: Verify Executable
-        run: ${{ env.BINARY_PATH }}/linux/${{ matrix.arch }}/${{ matrix.file }} version
-      - name: Output Static
-        run: ldd ${{ env.BINARY_PATH }}/linux/${{ matrix.arch }}/${{ matrix.file }} || true
+      - name: Verify Executable ( x86 )
+        run: ${{ env.BINARY_PATH }}/linux/x86/${{ matrix.x86 }} version
+      - name: Output Static ( x86 )
+        run: ldd ${{ env.BINARY_PATH }}/linux/x86/${{ matrix.file }} || true
+      - name: Verify Executable ( amd64 )
+        run: ${{ env.BINARY_PATH }}/linux/amd64/${{ matrix.amd64 }} version
+      - name: Output Static ( amd64 )
+        run: ldd ${{ env.BINARY_PATH }}/linux/amd64/${{ matrix.amd64 }} || true
 
   analyze-windows-aapt:
     runs-on: windows-latest
