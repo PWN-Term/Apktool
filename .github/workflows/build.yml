@@ -39,12 +39,13 @@ jobs:
     strategy:
       matrix:
         file: [ aapt, aapt_64, aapt2, aapt2_64 ]
+        arch: [amd64, x86]
     steps:
       - uses: actions/checkout@v4
       - name: Verify Executable
-        run: ${{ env.BINARY_PATH }}/linux/*/${{ matrix.file }} version
+        run: ${{ env.BINARY_PATH }}/linux/${{ matrix.arch }}/${{ matrix.file }} version
       - name: Output Static
-        run: ldd ${{ env.BINARY_PATH }}/linux/${{ matrix.file }} || true
+        run: ldd ${{ env.BINARY_PATH }}/linux/${{ matrix.arch }/${{ matrix.file }} || true
 
   analyze-windows-aapt:
     runs-on: windows-latest
