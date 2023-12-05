@@ -31,6 +31,12 @@ public class AaptManager {
         return getAapt(1);
     }
 
+    public static String get_aarch() {
+        String arch = System.getProperty("os.arch");
+
+        return arch;
+    }
+
     private static File getAapt(Integer version) throws BrutException {
         File aaptBinary;
         String aaptVersion = getAaptBinaryName(version);
@@ -46,7 +52,8 @@ public class AaptManager {
             if (OSDetection.isMacOSX()) {
                 aaptBinary = Jar.getResourceAsFile("/prebuilt/macosx/" + aaptVersion, AaptManager.class);
             } else if (OSDetection.isUnix()) {
-                aaptBinary = Jar.getResourceAsFile("/prebuilt/linux/" + aaptVersion, AaptManager.class);
+                System.out.println("I: Using " + get_aarch() + " aapt tools ...");
+                aaptBinary = Jar.getResourceAsFile("/prebuilt/linux/" + get_aarch() + "/" + aaptVersion, AaptManager.class);
             } else if (OSDetection.isWindows()) {
                 aaptBinary = Jar.getResourceAsFile("/prebuilt/windows/" + aaptVersion + ".exe", AaptManager.class);
             } else {

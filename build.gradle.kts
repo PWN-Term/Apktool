@@ -37,20 +37,8 @@ val gitBranch: String? by lazy {
 }
 
 if ("release" !in gradle.startParameter.taskNames) {
-    val hash = this.gitDescribe
-
-    if (hash == null) {
-        gitRevision = "dirty"
-        apktoolVersion = "$version-dirty"
-        project.logger.lifecycle("Building SNAPSHOT (no .git folder found)")
-    } else {
-        gitRevision = hash
-        apktoolVersion = "$hash-SNAPSHOT"
-        project.logger.lifecycle("Building SNAPSHOT ($gitBranch): $gitRevision")
-    }
-} else {
     gitRevision = ""
-    apktoolVersion = if (suffix.isNotEmpty()) "$version-$suffix" else version;
+    apktoolVersion = version;
     project.logger.lifecycle("Building RELEASE ($gitBranch): $apktoolVersion")
 }
 
