@@ -2,7 +2,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - 29.04.2024
   pull_request:
     paths:
       - '**.java'
