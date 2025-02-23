@@ -89,7 +89,6 @@ jobs:
   upload-artifact:
     runs-on: ubuntu-latest
     name: Build apktool.jar
-    if: github.repository == 'PWN-Term/Apktool' && github.ref == 'refs/heads/master'
     needs:
       - build-and-test-with-Java-8-and-later
     steps:
